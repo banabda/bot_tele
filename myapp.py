@@ -10,7 +10,7 @@ def index():
         resp = request.get_json()
         return Response(resp, status=200)
     else:
-        return render_template('home.html')
+        return render_template('webhook.html')
 
 
 @app.route("/")

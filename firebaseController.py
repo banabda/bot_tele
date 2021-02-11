@@ -12,23 +12,25 @@ firebase = firebase.FirebaseApplication(
 # print(firebase)
 
 
-def create():
-    today = datetime.datetime.now()
-    db.collection('response').document('bagasnabil1').set(
-        {
-            'name': 'Bagas',
-            'creationDate': today,
-            'indices': ['NDX', 'OEX', 'S5COND', 'SPX']
-        }
-    )
+def create(col, doc, data):
+    db.collection(col).document(doc).set(data)
+
+
+today = datetime.datetime.now()
+# print(today.ctime())
+dataset = {
+    'name': 'Bagas',
+    'creationDate': today,
+    'indices': ['NDX', 'OEX', 'S5COND', 'SPX']
+}
 
 
 collects = db.collections()
 
 
-for coll in collects:
-    print(type(coll))
-    for doc in coll.stream():
-        print(f'{doc.id} => {doc.to_dict()}')
+# for coll in collects:
+#     print(type(coll))
+#     for doc in coll.stream():
+#         print(f'{doc.id} => {doc.to_dict()}')
 
-# create()
+# create('reponse', 'testfunc', dataset)

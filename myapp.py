@@ -8,6 +8,8 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         resp = request.get_json()
+        firebaseController.create(
+            'webhook', firebaseController.today.ctime(), resp)
         return Response(resp, status=200)
     else:
         return render_template('webhook.html')
